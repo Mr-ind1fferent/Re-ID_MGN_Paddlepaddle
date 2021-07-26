@@ -50,4 +50,8 @@ python main.py --mode evaluate --data_path <path/to/Market-1501-v15.09.15> --wei
 python main.py --mode vis --query_image <path/to/query_image>
 ```
 
+Visualize rank10 query result from bounding_box_test
+
+
+
 ![](show.png)
