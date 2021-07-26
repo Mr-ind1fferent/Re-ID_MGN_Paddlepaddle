@@ -57,3 +57,16 @@ Visualize rank10 query result from bounding_box_test
 
 
 ![](show.png)
+
+
+## Citation
+```
+@ARTICLE{2018arXiv180401438W,
+    author = {{Wang}, G. and {Yuan}, Y. and {Chen}, X. and {Li}, J. and {Zhou}, X.},
+    title = "{Learning Discriminative Features with Multiple Granularities for Person Re-Identification}",
+    journal = {ArXiv e-prints},
+    year = 2018,
+}
+
+https://github.com/GNAYUOHZ/ReID-MGN
+```
