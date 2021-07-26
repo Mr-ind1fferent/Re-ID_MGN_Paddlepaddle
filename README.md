@@ -19,4 +19,9 @@ data/
 
 Market1501
 
-You can download dataset from [here](https://pan.baidu.com/s/1ppTyzLtJEDXg1K0rSBRngA )
+You can download dataset from [here](https://pan.baidu.com/s/1FMTwQq9NTXDTxjGwMTj5sA ) .  The password is : RWZW
+
+
+Weights
+
+The weights we have already trained can be download [here](https://pan.baidu.com/s/1c-Oavx-caqxXvthe-VtvOg ) .     The password is : jam3
