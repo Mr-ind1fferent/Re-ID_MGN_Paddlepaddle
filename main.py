@@ -71,14 +71,14 @@ class Main():
             return r, m_ap
 
         #########################   re rank##########################
-        print('qf:', len(qf))
-        print('gf:', len(gf))
+        # print('qf:', len(qf))
+        # print('gf:', len(gf))
         q_g_dist = np.dot(qf, np.transpose(gf))
         q_q_dist = np.dot(qf, np.transpose(qf))
         g_g_dist = np.dot(gf, np.transpose(gf))
-        print('q_q_dist:', len(q_q_dist))
-        print('q_g_dist:', len(q_g_dist))
-        print('g_g_dist:', len(g_g_dist))
+        # print('q_q_dist:', len(q_q_dist))
+        # print('q_g_dist:', len(q_g_dist))
+        # print('g_g_dist:', len(g_g_dist))
         dist = re_ranking(q_g_dist, q_q_dist, g_g_dist)
 
         r, m_ap = rank(dist)
@@ -108,13 +108,19 @@ class Main():
         gallery_feature = extract_feature(model, tqdm(data.test_loader))
 
         # sort images
-        # query_feature = query_feature.view(-1, 1)
-        query_feature = paddle.reshape(query_feature,[-1,1])
+        query_feature = paddle.reshape(query_feature,[-1, 1])
         score = paddle.mm(gallery_feature, query_feature)
+
+        # print("before ",score.shape)
+        # print("before ", score)
         score = score.squeeze(1).cpu()
+
+        # print("after", score.shape)
+        # print("after", score)
         score = score.numpy()
 
         index = np.argsort(score)  # from small to large
+        # print(index)
         index = index[::-1]  # from large to small
 
         # # Remove junk images
@@ -130,16 +136,25 @@ class Main():
         plt.imshow(plt.imread(opt.query_image))
         ax.set_title('query')
 
-        print('Top 10 images are as follow:')
-
+        print('Top images are as follow:')
+        # if len(index)<10:
+        #     for i in range(len(index)):
+        #         img_path = gallery_path[index[i]]
+        #         print(img_path)
+        #         ax = plt.subplot(1, 11, i + 2)
+        #         ax.axis('off')
+        #         plt.imshow(plt.imread(img_path))
+        #         ax.set_title(img_path.split('/')[-1][:len(index)])
+        # elif len(index)>= 10:
         for i in range(10):
-            img_path = gallery_path[index[i]]
-            print(img_path)
+            if (score[index[i]]) >opt.confidence:
+                img_path = gallery_path[index[i]]
+                print(img_path)
 
-            ax = plt.subplot(1, 11, i + 2)
-            ax.axis('off')
-            plt.imshow(plt.imread(img_path))
-            ax.set_title(img_path.split('/')[-1][:9])
+                ax = plt.subplot(1, 11, i + 2)
+                ax.axis('off')
+                plt.imshow(plt.imread(img_path))
+                ax.set_title(img_path.split('/')[-1][:9])
 
         fig.savefig("show.png")
         print('result saved to show.png')
@@ -150,6 +165,7 @@ if __name__ == '__main__':
     data = Data()
     model = MGN()
     loss = Loss()
+    model.load_dict(paddle.load(opt.weight))
     main = Main(model, loss, data)
 
     if opt.mode == 'train':

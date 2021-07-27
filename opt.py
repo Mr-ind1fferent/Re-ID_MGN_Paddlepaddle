@@ -45,5 +45,7 @@ parser.add_argument("--batchimage",
 parser.add_argument("--batchtest",
                     default=4,
                     help='the batch size for test')
+parser.add_argument("--confidence",
+                    default=0.82)
 
 opt = parser.parse_args()
