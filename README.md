@@ -49,7 +49,7 @@ python main.py --mode evaluate --data_path <path/to/Market-1501-v15.09.15> --wei
 ## Visualize
 
 ```
-python main.py --mode vis --query_image <path/to/query_image>
+python main.py --mode vis --query_image <path/to/query_image> --weight <path/to/weight_name.pdparams>
 ```
 
 Visualize rank10 query result from bounding_box_test
