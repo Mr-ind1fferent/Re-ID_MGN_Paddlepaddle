@@ -26,7 +26,7 @@ You can download dataset from [here](https://pan.baidu.com/s/1FMTwQq9NTXDTxjGwMT
 
 ## Weights
 
-The weights we have already trained can be download [here](链接：https://pan.baidu.com/s/1LEFNdjgHfXeHFh8HKrOQ7A?pwd=qqqq ) .     The password is : qqqq
+The weights we have already trained can be download [here](https://pan.baidu.com/s/1LEFNdjgHfXeHFh8HKrOQ7A) .     The password is : qqqq
 
 
 
